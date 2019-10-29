@@ -1,0 +1,2 @@
+MyORMSamp.exe
+pause
