@@ -13,40 +13,16 @@ namespace MyORMSamp
     {
         static void Main(string[] args)
         {
-            var Ivan = new Employee
-            {
-                Name = "Vasya",
-                Age = 20,
-                Email = "vasya@mail.ru"
-            };
-
-            var cfg = new Configuration();            
-            cfg.Configure();           
+            //Инициализация NHibernate
+            var cfg = new Configuration();
+            cfg.Configure();
             cfg.AddAssembly("MyORMSamp");
 
             ISessionFactory _sessionFactory;
             _sessionFactory = cfg.BuildSessionFactory();
-
             ISession session = _sessionFactory.OpenSession();
 
-            //Создание нового объекта (C)
-           // session.Save(Ivan);
-            //session.Flush();
-
-            //Чтение списка объектов (всех записей из таблицы БД) (R)
-            IList<Employee> employees = session.CreateCriteria(typeof(Employee)).List<Employee>();
-            foreach (Employee employee in employees)
-                Console.WriteLine(employee.ID+" "+employee.Name);
-
-            //Обновление информации о существующем объекте (U)
-            employees[0].Name = "Updated person";
-            session.Update(employees[0]);
-            session.Flush();
-
-            //Удаление
-            session.Delete(employees[0]);
-            session.Flush();
-
+           
 
             Console.ReadLine();
         }

@@ -9,6 +9,21 @@
     <property name="Name"/>
     <property name="Age"/>
     <property name="Email"/>
+    
+    <bag name="Educations" 
+         table="Education"
+         lazy="false"
+         inverse="true"
+         cascade="all-delete-orphan"
+         >
+      <key column="EmployeeID"/>
+      <one-to-many class="Education"></one-to-many>
+    </bag>
+    
+    <bag name="Languages" table="EmployeeLanguages">
+      <key column="EmployeeID"/>
+      <many-to-many class="Language" column="LanguageID"/>
+    </bag>
   </class>  
 </hibernate-mapping>
 
